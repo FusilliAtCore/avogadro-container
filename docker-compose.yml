@@ -1,0 +1,17 @@
+services:
+  avogadro:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /usr/bin/avogadro
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /tmp/.docker.xauth:/tmp/.docker.auth
+      - data:/var/data
+    environment:
+      - DISPLAY
+      - XAUTHORITY="/tmp/.docker.xauth"
+      - QT_X11_NO_MITSHM=1
+volumes:
+  data:
+    driver: local
